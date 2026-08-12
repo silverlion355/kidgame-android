@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>萌娃闯关 - 成语·古诗·英语·数学</title>
+  <link rel="manifest" href="/assets/manifest-h2hOSVGW.json">
+  <script type="module" crossorigin src="/assets/main-DeDNfdGw.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/data-idioms-DJfIbfhF.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-poems-B540L-Gu.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-english-C44Ok3uP.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-math-DyDruFQp.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-idb-Dob3nYDb.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-BaTo8HVl.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- ========== 首页 ========== -->
+    <div id="home-screen" class="screen active" data-screen="home-screen">
+      <div class="top-bar">
+        <div class="coin">🪙 <span id="home-coins">0</span></div>
+        <button class="sound-toggle" id="sound-toggle" aria-label="音效开关">🔊</button>
+        <div class="hint-badge">💡 <span id="home-hints">0</span></div>
+        <div id="free-time-display" style="display:none"></div>
+      </div>
+
+      <div class="home-title bounce-in">
+        <h1>🎮 萌娃闯关</h1>
+        <p>成语 · 古诗 · 英语 · 数学</p>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.1s" data-subject="idiom">
+        <div class="subject-icon idiom">📚</div>
+        <div class="subject-info">
+          <h3>成语乐园</h3>
+          <p>闯关学成语，妙语连珠</p>
+          <div class="subject-progress">
+            <span class="stars-tiny" id="idiom-stars">☆☆☆</span>
+            <span id="idiom-level">第1关</span>
+          </div>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.2s" data-subject="poem">
+        <div class="subject-icon poem">🎋</div>
+        <div class="subject-info">
+          <h3>古诗天地</h3>
+          <p>诵读经典诗，传承文化</p>
+          <div class="subject-progress">
+            <span class="stars-tiny" id="poem-stars">☆☆☆</span>
+            <span id="poem-level">第1关</span>
+          </div>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.3s" data-subject="english">
+        <div class="subject-icon english">🔤</div>
+        <div class="subject-info">
+          <h3>英语世界</h3>
+          <p>快乐记单词，世界更精彩</p>
+          <div class="subject-progress">
+            <span class="stars-tiny" id="english-stars">☆☆☆</span>
+            <span id="english-level">第1关</span>
+          </div>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.35s" data-subject="math">
+        <div class="subject-icon" style="background:linear-gradient(135deg, #D7FFB8, #80CBC4)">✖️</div>
+        <div class="subject-info">
+          <h3>数学星球</h3>
+          <p>九九乘法表，轻松搞定</p>
+          <div class="subject-progress">
+            <span class="stars-tiny" id="math-stars">☆☆☆</span>
+            <span id="math-level">第1关</span>
+          </div>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.4s" data-action="wrongbook">
+        <div class="subject-icon" style="background:#FCE4EC">📖</div>
+        <div class="subject-info">
+          <h3>错题本</h3>
+          <p>温故知新，查漏补缺</p>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div class="subject-card fade-in" style="animation-delay: 0.45s" data-action="shop">
+        <div class="subject-icon" style="background:#FFF3E0">🎁</div>
+        <div class="subject-info">
+          <h3>萌娃商店</h3>
+          <p>金币换好礼，惊喜等你来</p>
+        </div>
+        <div>›</div>
+      </div>
+
+      <div id="gifts-display"></div>
+
+      <div class="home-footer fade-in" style="animation-delay: 0.5s">
+        <p>🎉 每天进步一点点 🎉</p>
+      </div>
+    </div>
+
+    <!-- ========== 关卡选择 ========== -->
+    <div id="levels-screen" class="screen" data-screen="levels-screen">
+      <div class="top-bar">
+        <button class="btn-back" aria-label="返回">‹</button>
+        <h3 id="levels-title">选择关卡</h3>
+        <div></div>
+      </div>
+      <div id="levels-grid" class="level-grid"></div>
+    </div>
+
+    <!-- ========== 答题界面 ========== -->
+    <div id="quiz-screen" class="screen" data-screen="quiz-screen">
+      <div class="quiz-header">
+        <button class="btn-back" aria-label="退出">‹</button>
+        <div class="level-info" id="quiz-level-info">第1关</div>
+        <div class="hearts" id="hearts">❤️❤️❤️</div>
+      </div>
+      <div class="progress-bar">
+        <div class="fill" id="quiz-progress" style="width:0%"></div>
+      </div>
+
+      <div class="question-card fade-in" id="question-card">
+        <div class="question-text" id="question-text"></div>
+        <button class="speaker-btn" id="speaker-btn" style="display:none" aria-label="朗读题目">🔊</button>
+      </div>
+
+      <div class="options" id="options-container"></div>
+
+      <button class="hint-btn" id="hint-btn" aria-label="使用提示卡">
+        💡 使用提示卡（剩余：<span id="quiz-hints">0</span>）
+      </button>
+    </div>
+
+    <!-- ========== 错题本 ========== -->
+    <div id="wrongbook-screen" class="screen" data-screen="wrongbook-screen">
+      <div class="top-bar">
+        <button class="btn-back" aria-label="返回">‹</button>
+        <h3>错题本</h3>
+        <div></div>
+      </div>
+      <div id="wrongbook-content"></div>
+    </div>
+
+    <!-- ========== 萌娃商店 ========== -->
+    <div id="shop-screen" class="screen" data-screen="shop-screen">
+      <div class="top-bar">
+        <button class="btn-back" aria-label="返回">‹</button>
+        <h3>🎁 萌娃商店</h3>
+        <div></div>
+      </div>
+      <div class="shop-coins">🪙 <span id="shop-coins">0</span></div>
+      <div class="shop-section">
+        <h3>⏰ 休闲时间</h3>
+        <div class="shop-item" id="buy-free-time-btn">
+          <div class="shop-item-icon">⏰</div>
+          <div class="shop-item-info">
+            <h4>1分钟休闲时间</h4>
+                <p>休息一下，继续加油！</p>
+          </div>
+          <div class="shop-item-price">100 🪙</div>
+        </div>
+        <div class="free-time-balance" id="shop-free-time-balance">余额：0 分钟</div>
+        <button class="modal-btn" id="use-free-time-btn" style="display:none;margin-top:8px;width:100%;">⏰ 使用休闲时间</button>
+      </div>
+      <div class="shop-section">
+        <h3>🎁 小礼物</h3>
+        <div id="shop-items" class="shop-items-grid"></div>
+      </div>
+    </div>
+
+    <!-- ========== 结果弹窗 ========== -->
+    <div class="modal-overlay" id="result-modal">
+      <div class="modal">
+        <h2 id="result-title">🎉 恭喜过关！</h2>
+        <div class="stars-big" id="result-stars">⭐⭐⭐</div>
+        <p id="result-msg">太棒了！继续加油！</p>
+        <div>
+          <button class="modal-btn" id="result-next-btn">下一关</button>
+          <button class="modal-btn secondary" id="result-retry-btn">再试一次</button>
+          <button class="modal-btn secondary" id="result-home-btn" style="margin-top:8px;">回到主菜单</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 每日奖励 ========== -->
+    <div class="reward-popup" id="reward-popup">
+      <div class="coin-icon">🪙</div>
+      <h3>每日登录奖励！</h3>
+      <p id="reward-text">获得 15 金币</p>
+      <button class="modal-btn" id="reward-close-btn">太好了！</button>
+    </div>
+
+    <!-- ========== 使用休闲时间弹窗 ========== -->
+    <div class="modal-overlay" id="use-free-time-modal">
+      <div class="modal">
+        <h2>⏰ 使用休闲时间</h2>
+        <p>当前余额：<span id="modal-balance">0</span> 分钟</p>
+        <div style="margin:16px 0;">
+          <button class="modal-btn" style="margin:4px" data-minutes="1">1分钟</button>
+          <button class="modal-btn" style="margin:4px" data-minutes="3">3分钟</button>
+          <button class="modal-btn" style="margin:4px" data-minutes="5">5分钟</button>
+          <button class="modal-btn secondary" style="margin:4px" data-minutes="999">全部</button>
+        </div>
+        <div style="margin:12px 0;">
+          <input type="number" id="use-minutes-input" min="1" placeholder="自定义分钟数"
+            style="width:80%;padding:8px;border-radius:8px;border:1px solid #ddd;font-size:16px;text-align:center;">
+        </div>
+        <div>
+          <button class="modal-btn" id="use-free-time-confirm">确定</button>
+          <button class="modal-btn secondary" id="use-free-time-cancel">取消</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 样式内联：田字格等动态生成的样式 -->
+  <style>
+    /* 田字方格 */
+    .tianzi-cell {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 2px solid #555;
+      position: relative;
+      background: #fff;
+      margin: 0 3px;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+    .tianzi-cell:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 2px;
+      bottom: 2px;
+      border-left: 1px dashed #ccc;
+      transform: translateX(-50%);
+    }
+    .tianzi-cell:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      right: 2px;
+      border-top: 1px dashed #ccc;
+      transform: translateY(-50%);
+    }
+
+    /* ruby 拼音样式 */
+    ruby { ruby-align: center; }
+    rt { font-size: 0.6em; color: #777; font-weight: 500; }
+
+    /* 选项行 */
+    .options-row { display: flex; gap: 10px; }
+    .options-row .option-btn { flex: 1; }
+
+    /* 礼物展示 */
+    .gifts-wrap { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
+    .gift-icon {
+      font-size: 28px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF3E0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 2px solid #FFE0B2;
+    }
+    .gift-icon:hover { transform: scale(1.1); }
+
+    /* 拥有标记 */
+    .owned-badge {
+      background: var(--green-light);
+      color: var(--green-dark);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* 休闲时间显示 */
+    #free-time-display {
+      background: #E8F5E9;
+      color: #2E7D32;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    /* 弹窗按钮样式修正 */
+    .modal-overlay .modal-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .modal-overlay .modal-btn {
+      width: 100%;
+    }
+  </style>
+</body>
+</html>

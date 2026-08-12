@@ -1,0 +1,2 @@
+import{_ as i}from"./data-idioms-DJfIbfhF.js";let e=null;async function u(){return e||(e=(await i(()=>import("./poems-Co1IpUpo.js"),[])).default.items,e)}function n(){if(!e)throw new Error("Poems not loaded. Call loadPoems() first.");return e}function d(t){return n().find(o=>o.id===t)}function m(t){const r=(t-1)*5,l=r+5;return n().slice(r,l)}export{d as getPoemById,m as getPoemsByLevel,n as getPoemsSync,u as loadPoems};
+//# sourceMappingURL=data-poems-B540L-Gu.js.map

@@ -1,0 +1,2 @@
+import{_ as o}from"./data-idioms-DJfIbfhF.js";let e=null;async function u(){return e||(e=(await o(()=>import("./english-BPGqO4iB.js"),[])).default.items,e)}function l(){if(!e)throw new Error("English not loaded. Call loadEnglish() first.");return e}function d(n){return l().find(t=>t.id===n)}function a(n){const r=(n-1)*20,i=r+20;return l().slice(r,i)}export{d as getEnglishById,a as getEnglishByLevel,l as getEnglishSync,u as loadEnglish};
+//# sourceMappingURL=data-english-C44Ok3uP.js.map
