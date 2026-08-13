@@ -14,7 +14,8 @@
     "lint": "eslint src --ext ts,tsx --max-warnings 0"
   },
   "dependencies": {
-    "idb": "^8.0.0"
+    "idb": "^8.0.0",
+    "pinyin-pro": "^3.18.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
